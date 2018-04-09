@@ -1,19 +1,19 @@
 function limpa_formulário_cep() {
     //Limpa valores do formulário de cep.
-    document.getElementById('cep').value=("");
-    document.getElementById('rua').value=("");
-    document.getElementById('bairro').value=("");
-    document.getElementById('cidade').value=("");
-    document.getElementById('uf').value=("");
+    document.getElementById('cep').value = ("");
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
 }
 
 function meu_callback(conteudo) {
     if (!("erro" in conteudo)) {
         //Atualiza os campos com os valores.
-        document.getElementById('rua').value=(conteudo.logradouro);
-        document.getElementById('bairro').value=(conteudo.bairro);
-        document.getElementById('cidade').value=(conteudo.localidade);
-        document.getElementById('uf').value=(conteudo.uf);
+        document.getElementById('rua').value = (conteudo.logradouro);
+        document.getElementById('bairro').value = (conteudo.bairro);
+        document.getElementById('cidade').value = (conteudo.localidade);
+        document.getElementById('uf').value = (conteudo.uf);
     } //end if.
     else {
         //CEP não Encontrado.
@@ -34,19 +34,19 @@ function pesquisacep(valor) {
         var validacep = /^[0-9]{5}\-?[0-9]{3}$/;
 
         //Valida o formato do CEP.
-        if(validacep.test(cep)) {
+        if (validacep.test(cep)) {
 
             //Preenche os campos com "..." enquanto consulta webservice.
-            document.getElementById('rua').value="...";
-            document.getElementById('bairro').value="...";
-            document.getElementById('cidade').value="...";
-            document.getElementById('uf').value="...";
+            document.getElementById('rua').value = "...";
+            document.getElementById('bairro').value = "...";
+            document.getElementById('cidade').value = "...";
+            document.getElementById('uf').value = "...";
 
             //Cria um elemento javascript.
             var script = document.createElement('script');
 
             //Sincroniza com o callback.
-            script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+            script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
 
             //Insere script no documento e carrega o conteúdo.
             document.body.appendChild(script);
